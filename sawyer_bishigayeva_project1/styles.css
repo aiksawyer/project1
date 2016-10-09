@@ -1,0 +1,48 @@
+@import "compass/css3";
+
+html,body {margin:0;height:100%; overflow:hidden;}
+body {background: hsl(210, 30%, 0%) radial-gradient( hsl(210, 30%, 20%), hsl(210, 30%, 0%));}
+
+$melt_time: 6s;
+$delay: 2s;
+$anim_type: ease-in;
+$cube_size: 100px;
+
+.cube {
+  position:absolute; left:50%; top:50%;
+  width:$cube_size; height:$cube_size;
+  transform-style:preserve-3d;
+  transform:rotateX(-30deg) rotateY(35deg) translate(-50%, -50%);
+  
+  > div {
+    position:absolute; left:50%; top:50%;
+    animation:melt $melt_time $anim_type $delay both;
+    transform-style:preserve-3d;
+
+    > div {
+      position:absolute; left:50%; top:50%;
+      width:$cube_size; height:$cube_size; border-radius:$cube_size/12;
+      background:rgba(221,221,221,0.2);
+      background:linear-gradient(rgba(237,237,237,0.2),rgba(153,153,153,0.1));
+      box-shadow:0 0 4px rgba(255,255,255,0.2),inset 0 0 4px rgba(255,255,255,0.2);
+    }
+    
+  }
+}
+
+.cube > div > div:nth-child(1) {transform:translate3d(0,0,$cube_size/2);}
+.cube > div > div:nth-child(2) {transform:rotateX(90deg) translate3d(0,0,$cube_size/2);}
+.cube > div > div:nth-child(3) {transform:rotateX(180deg) translate3d(0,0,$cube_size/2);}
+.cube > div > div:nth-child(4) {transform:rotateX(270deg) translate3d(0,0,$cube_size/2);
+                                animation:puddle $melt_time $anim_type $delay both;}
+.cube > div > div:nth-child(5) {transform:rotateY(90deg) translate3d(0,0,$cube_size/2);}
+.cube > div > div:nth-child(6) {transform:rotateY(-90deg) translate3d(0,0,$cube_size/2);}
+
+@keyframes melt {
+  0% { transform:translate3d(0,0,0) scaleY(1); }
+  90% { transform:translate3d(0,$cube_size/2,0) scaleY(0.01); }
+  100% { transform:translate3d(0,$cube_size/2,0) scaleY(0);}
+}
+@keyframes puddle {
+  100% {box-shadow:0px 0px 0 $cube_size/1.3 rgba(255,255,255,0.2);}
+}

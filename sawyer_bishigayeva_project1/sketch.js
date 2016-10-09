@@ -21,19 +21,19 @@ wakes up happy and ready to move again
 function setup() {
   createCanvas(800, 500);
   background(255);
-
 }
 
 function draw() {
+
   noStroke();
-  fill(0, 191, 255);
+  fill(255);
   rect(0, 0, width, height / 2);
-  fill(207, 83, 0);
+  fill(0);
   rect(0, height / 2, width, height);
   fill(255, 0, 0);
   rect(width / 2 - 100, height / 2 - 30, 45, 45);
-
-
+  keyPressed();
+  obstacle = new Obstacles(2);
 
 }
 ///creating obstacles – 5 objects that rect interacts with differently 
@@ -70,25 +70,27 @@ function Obstacles(type) {
 
 }
 
-function hurdle() {
+function hurdle(x) {
+  x = width;
   strokeWeight(5);
-  stroke(0);
-  line(width, height / 2, width, height / 2 + 100);
-  line(width - 200, height / 2 - 100, width, height / 2);
-  line(width - 200, height / 2 - 100, width - 200, height / 2);
+  stroke(0, 0, 255);
+  line(x, height / 2, x, height / 2 + 100);
+  line(x - 200, height / 2 - 100, x, height / 2);
+  line(x - 200, height / 2 - 100, x - 200, height / 2);
 }
 
-function hurdleSlide() {
+function hurdleSlide(x) {
+  x = width;
   strokeWeight(5);
-  stroke(0);
-  line(width, height / 2, width, height / 2 + 120);
-  line(width - 100, height / 2 - 70, width - 100, height / 2 + 50);
-  line(width - 100, height / 2 - 70, width, height / 2);
+  stroke(0, 0, 255);
+  line(x, height / 2, x, height / 2 + 120);
+  line(x - 100, height / 2 - 70, x - 100, height / 2 + 50);
+  line(x - 100, height / 2 - 70, x, height / 2);
 }
 
 function hoop() {
   strokeWeight(5);
-  stroke(0);
+  stroke(0, 0, 255);
   noFill();
   ellipse(width, height / 2 - 150, 50, 170);
 }
@@ -96,8 +98,8 @@ function hoop() {
 
 function tunnel() {
   strokeWeight(0);
-  stroke(255);
-  fill(255);
+  stroke(0, 0, 255);
+  fill(0, 0, 255);
   rect(width - 100, height / 2, 50, 100);
   rect(width - 50, height / 2 + 50, 50, 50);
   rect(width, height / 2, 50, 100);
@@ -105,25 +107,22 @@ function tunnel() {
 
 }
 
-function ladder(){
+function ladder() {
   strokeWeight(5);
-  stroke(0);
-  fill(0,255,0);
-  arc(width, height/2, 200, 200, PI, 0);
-  fill(0, 191, 255);
-  arc(width, height/2, 100, 100, PI,0);
+  stroke(0, 0, 255);
+  fill(0, 0, 255);
+  arc(width, height / 2, 200, 200, PI, 0);
+  fill(255);
+  arc(width, height / 2, 100, 100, PI, 0);
   noFill;
-  
+
+}
+
+function keyPressed() {
+  if (keyCode === RIGHT_ARROW) {
+    println("arrow is pressed");
+    translate(-1, 0);
+  }
 }
 
 ///checking git app
-
-
-
-
-
-
-
-
-
-
